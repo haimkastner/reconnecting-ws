@@ -20,6 +20,9 @@ socket.open("wss://127.0.0.1/ws-api");
 
 socket.onopen = () => {
     console.log('WS open')
+
+    // Send msg
+    socket.send('some msg')
 }
 
 socket.onmessage = e => {
