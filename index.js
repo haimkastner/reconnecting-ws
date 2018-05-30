@@ -3,8 +3,11 @@ const WebSocket = require('ws');
 /* 
 The handler for WS to reconnect etc.
 */
-function WebSocketClient() {
-    this.autoReconnectInterval = 5 * 1000;	// ms
+function WebSocketClient(reconnectIntervalInMS) {
+
+    this.autoReconnectInterval = 5 * 1000;	// default interval ms
+    if (reconnectIntervalInMS)
+        this.autoReconnectInterval = reconnectIntervalInMS;
 }
 
 /*
@@ -58,7 +61,7 @@ WebSocketClient.prototype.reconnect = function (e) {
     this.instance.removeAllListeners();
     var that = this;
     setTimeout(function () {
-        that.onrecconect();
+        that.onreconnect();
         that.open(that.url);
     }, this.autoReconnectInterval);
 }
@@ -67,6 +70,6 @@ WebSocketClient.prototype.onopen = function (e) { console.log("WebSocketClient: 
 WebSocketClient.prototype.onmessage = function (data, flags, number) { console.log("WebSocketClient: message", arguments); }
 WebSocketClient.prototype.onerror = function (e) { console.log("WebSocketClient: error", arguments); }
 WebSocketClient.prototype.onclose = function (e) { console.log("WebSocketClient: closed", arguments); }
-WebSocketClient.prototype.onrecconect = function (e) { console.log("WebSocketClient: reconnect...", arguments); }
+WebSocketClient.prototype.onreconnect = function (e) { console.log("WebSocketClient: reconnect...", arguments); }
 
 module.exports = WebSocketClient;
