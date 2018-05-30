@@ -14,7 +14,7 @@ npm install --save reconnecting-ws
 
 ```js
 const webSocket = require('reconnecting-ws');
-var socket = new webSocket(6000); // set intaerval to 6000 ms insted of 5000 default
+var socket = new webSocket(6000); // set reconnecting intaerval to 6000 ms insted of 5000 default
 
 socket.open("wss://127.0.0.1/ws-api");
 
