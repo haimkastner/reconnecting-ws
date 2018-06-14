@@ -1,6 +1,6 @@
 {
   "name": "reconnecting-ws",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "wrapper to WS that try reconnect to server when disconnect by any reasone",
   "main": "index.js",
   "scripts": {
