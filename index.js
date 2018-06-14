@@ -62,7 +62,11 @@ WebSocketClient.prototype.reconnect = function (e) {
     var that = this;
     setTimeout(function () {
         that.onreconnect();
-        that.open(that.url);
+        try {
+            that.open(that.url);
+        } catch (error) {
+
+        }
     }, this.autoReconnectInterval);
 }
 
