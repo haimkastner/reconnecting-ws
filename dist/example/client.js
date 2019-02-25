@@ -15,7 +15,7 @@ class SocketClient {
         this.webSocketClient.on('close', this.onClose);
         this.webSocketClient.on('reconnect', this.onReconnect);
         /** Connect to server. */
-        this.webSocketClient.connect('ws://127.0.0.1:3001');
+        this.webSocketClient.connect('ws://127.0.0.1:8080');
         /**
          * It`s possible to access WebSocket instance directly.
          * without using wrapper of WebSocketClient. (see https://github.com/websockets/ws).

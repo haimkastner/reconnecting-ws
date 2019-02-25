@@ -1,13 +1,13 @@
-import { WebSocketClient } from '../webSocketClient';
 import WebSocket from 'ws';
+import { WebSocketClient } from '../webSocketClient';
 
 class SocketClient {
 
     private webSocketClient: WebSocketClient;
     constructor() {
-        /** 
+        /**
          * Init WebSocketClient
-         * Set trying reconnect when connection lost each 5 seconds, and show console message 
+         * Set trying reconnect when connection lost each 5 seconds, and show console message
          */
         this.webSocketClient = new WebSocketClient(5000, true);
 
@@ -21,7 +21,7 @@ class SocketClient {
         /** Connect to server. */
         this.webSocketClient.connect('ws://127.0.0.1:8080');
 
-        /** 
+        /**
          * It`s possible to access WebSocket instance directly.
          * without using wrapper of WebSocketClient. (see https://github.com/websockets/ws).
          * Note that when trying to reconnect *all* listeners removed

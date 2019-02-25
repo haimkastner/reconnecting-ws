@@ -1,6 +1,6 @@
 /// <reference types="node" />
-import WebSocket from 'ws';
 import { EventEmitter } from 'events';
+import WebSocket from 'ws';
 /**
  * WebSocketClient allows to use WebSocket and keep connection alive untile manual close.
  * By reconnect automatly when connection close from any reasone.

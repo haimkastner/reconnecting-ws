@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const ws_1 = __importDefault(require("ws"));
 const events_1 = require("events");
+const ws_1 = __importDefault(require("ws"));
 /**
  * WebSocketClient allows to use WebSocket and keep connection alive untile manual close.
  * By reconnect automatly when connection close from any reasone.

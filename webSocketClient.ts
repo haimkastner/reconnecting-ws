@@ -1,5 +1,5 @@
-import WebSocket from 'ws';
 import { EventEmitter } from 'events';
+import  WebSocket from 'ws';
 
 /**
  * WebSocketClient allows to use WebSocket and keep connection alive untile manual close.
@@ -10,11 +10,11 @@ export class WebSocketClient extends EventEmitter {
     /** web socket instance */
     private webSocket!: WebSocket;
     /** is connection close manualy by code. */
-    private manualClosed: boolean = false;
+    private manualClosed = false;
     /** ws server url */
-    private wsServerUrl: string = '';
+    private wsServerUrl = '';
 
-    /** 
+    /**
      * WebSocket instance.
      * Allows to use it for any addionnal API hat not wrapped in 'WebSocketClient',
      * Note that when trying to reconnect *all* listeners removed.
@@ -110,7 +110,7 @@ export class WebSocketClient extends EventEmitter {
     }
 
     /**
-     * Disconnect manualy from web socket server. 
+     * Disconnect manualy from web socket server.
      */
     public disconnect() {
         this.manualClosed = true;
@@ -119,6 +119,6 @@ export class WebSocketClient extends EventEmitter {
 
     /** Send data to web socket server.  */
     public sendData(data: any) {
-        this.webSocket.send(data)
+        this.webSocket.send(data);
     }
 }
