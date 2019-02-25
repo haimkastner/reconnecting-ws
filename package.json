@@ -1,6 +1,6 @@
 {
   "name": "reconnecting-ws",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "wrapper to WS client that try reconnect to server when disconnect by any reasone",
   "main": "dist/webSocketClient.js",
   "scripts": {

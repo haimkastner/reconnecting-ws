@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import  WebSocket from 'ws';
+import * as WebSocket from 'ws';
 
 /**
  * WebSocketClient allows to use WebSocket and keep connection alive untile manual close.

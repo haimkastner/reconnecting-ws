@@ -1,4 +1,4 @@
-import WebSocket from 'ws';
+import * as WebSocket from 'ws';
 import { WebSocketClient } from '../webSocketClient';
 
 class SocketClient {

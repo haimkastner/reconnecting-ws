@@ -1,10 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const events_1 = require("events");
-const ws_1 = __importDefault(require("ws"));
+const WebSocket = require("ws");
 /**
  * WebSocketClient allows to use WebSocket and keep connection alive untile manual close.
  * By reconnect automatly when connection close from any reasone.
@@ -92,7 +89,7 @@ class WebSocketClient extends events_1.EventEmitter {
         /** Reset closing mark */
         this.manualClosed = false;
         /** Create new WebSocket instance */
-        this.webSocket = new ws_1.default(url);
+        this.webSocket = new WebSocket(url);
         /** Subscribe to emitters */
         this.webSocket.on('open', () => { this.onOpen(); });
         this.webSocket.on('error', (err) => { this.onError(err); });
