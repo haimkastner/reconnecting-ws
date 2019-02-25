@@ -1,18 +1,6 @@
-# reconnecting-ws
-Wrap WS client to auto reconnect websocket server when disconnect by any reasone.
+import { WebSocketClient } from '../webSocketClient';
+import WebSocket from 'ws';
 
-The code is based on https://github.com/websockets/ws/wiki/Websocket-client-implementation-for-auto-reconnect
-
-
-## Installing
-
-```
-npm install --save reconnecting-ws
-```
-
-## Using
-
-```typescript
 class SocketClient {
 
     private webSocketClient: WebSocketClient;
@@ -31,7 +19,7 @@ class SocketClient {
         this.webSocketClient.on('reconnect', this.onReconnect);
 
         /** Connect to server. */
-        this.webSocketClient.connect('ws://127.0.0.1:3001');
+        this.webSocketClient.connect('ws://127.0.0.1:8080');
 
         /** 
          * It`s possible to access WebSocket instance directly.
@@ -71,6 +59,7 @@ class SocketClient {
     }
 }
 
-For real example see `example` folder.
+export const socketClient = new SocketClient();
 
-```
+/** Keep app alive forever */
+setTimeout(() => { }, 60000000);

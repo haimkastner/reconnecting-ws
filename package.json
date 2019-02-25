@@ -1,17 +1,17 @@
 {
   "name": "reconnecting-ws",
-  "version": "1.0.3",
-  "description": "wrapper to WS that try reconnect to server when disconnect by any reasone",
-  "main": "index.js",
+  "version": "2.0.0",
+  "description": "wrapper to WS client that try reconnect to server when disconnect by any reasone",
+  "main": "dist/webSocketClient.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/haimkastner/reconnecting-ws.git"
   },
   "author": "Haim Kastner",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/haimkastner/reconnecting-ws/issues"
   },
@@ -24,5 +24,11 @@
   "homepage": "https://github.com/haimkastner/reconnecting-ws#readme",
   "dependencies": {
     "ws": "^5.2.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^6.0.1",
+    "@types/node": "^10.12.10",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.2"
   }
 }
