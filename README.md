@@ -1,5 +1,5 @@
 # reconnecting-ws
-Wrap WS client to auto reconnect websocket server when disconnect by any reasone.
+Wrap WS client to auto reconnect websocket server when disconnected by any reason.
 
 The code is based on https://github.com/websockets/ws/wiki/Websocket-client-implementation-for-auto-reconnect
 
