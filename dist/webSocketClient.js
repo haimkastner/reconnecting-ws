@@ -71,6 +71,10 @@ class WebSocketClient extends events_1.EventEmitter {
         this.webSocket.removeAllListeners();
         /** Wait reconnectingInterval time */
         setTimeout(() => {
+            /** If connection closed manualy, and the timeout already in queue abort re-connecting. */
+            if (this.manualClosed) {
+                return;
+            }
             if (this.showConsoleLogs) {
                 console.log(`try to reconnect to seb socket server...`);
             }
