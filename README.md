@@ -70,7 +70,7 @@ class SocketClient {
 
     }
 }
+```
 
 For real example see `example` folder.
 
-```
