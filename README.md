@@ -13,6 +13,9 @@ npm install --save reconnecting-ws
 ## Using
 
 ```typescript
+import { WebSocketClient } from 'reconnecting-ws';
+
+
 class SocketClient {
 
     private webSocketClient: WebSocketClient;
@@ -36,36 +39,39 @@ class SocketClient {
         /** 
          * It`s possible to access WebSocket instance directly.
          * without using wrapper of WebSocketClient. (see https://github.com/websockets/ws).
-         * Note that when trying to reconnect *all* listeners removed
+         * Note that when trying to reconnect *all* listeners will be removed
          */
-        const bufferAmout = this.webSocketClient.WebSocketInstance.bufferedAmount;
+        const bufferAmount = this.webSocketClient.WebSocketInstance.bufferedAmount;
 
-        /** Disconnect manualy in minute. */
+        /** Disconnect manually in minute. */
         setTimeout(() => {
             this.webSocketClient.disconnect();
         }, 60000);
     }
 
     private onOpen() {
+        // TODO
         console.log('onOpen');
     }
 
     private onClose(code: number, reason: string) {
+        // TODO
         console.log('onClose');
-
     }
 
     private onError(err: Error) {
+        // TODO
         console.log('onError');
-
     }
 
     private onMessage(data: WebSocket.Data) {
+        // TODO
         console.log('onMessage');
 
     }
 
     private onReconnect() {
+        // TODO
         console.log('onReconnect');
 
     }

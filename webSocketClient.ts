@@ -2,22 +2,22 @@ import { EventEmitter } from 'events';
 import * as WebSocket from 'ws';
 
 /**
- * WebSocketClient allows to use WebSocket and keep connection alive untile manual close.
- * By reconnect automatly when connection close from any reasone.
+ * WebSocketClient allows to use WebSocket and keep connection alive until manual close.
+ * By persistent reconnect  when connection close from any reason.
  */
 export class WebSocketClient extends EventEmitter {
 
     /** web socket instance */
     private webSocket!: WebSocket;
-    /** is connection close manualy by code. */
+    /** is connection close manually by code. */
     private manualClosed = false;
     /** ws server url */
     private wsServerUrl = '';
 
     /**
      * WebSocket instance.
-     * Allows to use it for any addionnal API hat not wrapped in 'WebSocketClient',
-     * Note that when trying to reconnect *all* listeners removed.
+     * Allows to use it for any additional API hat not wrapped in 'WebSocketClient',
+     * Note that when trying to reconnect *all* listeners wil be removed.
      */
     public get WebSocketInstance(): WebSocket {
         return this.webSocket;
@@ -25,7 +25,7 @@ export class WebSocketClient extends EventEmitter {
 
     /**
      * Init WebSocketClient with reconnection properties.
-     * @param reconnectingIntervalMs Timeout between connection fail to next  trying connection. in miliseconds.
+     * @param reconnectingIntervalMs Timeout between connection fail to next  trying connection. in milliseconds.
      * @param showConsoleLogs Mark if show message in console.
      */
     constructor(private reconnectingIntervalMs: number = 5000, private showConsoleLogs = false) {
@@ -35,7 +35,7 @@ export class WebSocketClient extends EventEmitter {
     /** On connection open */
     private onOpen() {
         if (this.showConsoleLogs) {
-            console.log(`sockets successfuly opend`);
+            console.log(`sockets successfully opened`);
         }
         this.emit('open');
     }
@@ -47,7 +47,7 @@ export class WebSocketClient extends EventEmitter {
         }
         this.emit('close', code, reason);
 
-        /** If connection closed manualy, return. */
+        /** If connection closed manually, return. */
         if (this.manualClosed) {
             return;
         }
@@ -58,9 +58,9 @@ export class WebSocketClient extends EventEmitter {
     /** On connection error */
     private onError(err: Error) {
         if (this.showConsoleLogs) {
-            console.log(`error with seb socket ${err.message}`);
+            console.log(`error with web-socket ${err.message}`);
         }
-        /** If connection closed manualy, return. */
+        /** If connection closed manually, return. */
         if (this.manualClosed) {
             return;
         }
@@ -75,20 +75,20 @@ export class WebSocketClient extends EventEmitter {
 
     /** Try to reconnect to web socket server  */
     private reconnect() {
-        /** Remove all listers (befor creating new instance or re-subscribing emitters)  */
+        /** Remove all listers (before creating new instance or re-subscribing emitters)  */
         this.webSocket.removeAllListeners();
 
         /** Wait reconnectingInterval time */
         setTimeout(() => {
-            /** If connection closed manualy, and the timeout already in queue abort re-connecting. */
+            /** If connection closed manually, and the timeout already in queue abort re-connecting. */
             if (this.manualClosed) {
                 return;
             }
             if (this.showConsoleLogs) {
-                console.log(`try to reconnect to seb socket server...`);
+                console.log(`try to reconnect to the web-socket server...`);
             }
             this.emit('reconnect');
-            /** Connect agine with same url */
+            /** Connect again with the same url */
             this.connect(this.wsServerUrl);
         }, this.reconnectingIntervalMs);
     }
@@ -103,7 +103,7 @@ export class WebSocketClient extends EventEmitter {
         /** Reset closing mark */
         this.manualClosed = false;
 
-        /** Create new WebSocket instance */
+        /** Create a new WebSocket instance */
         this.webSocket = new WebSocket(url);
 
         /** Subscribe to emitters */
@@ -114,7 +114,7 @@ export class WebSocketClient extends EventEmitter {
     }
 
     /**
-     * Disconnect manualy from web socket server.
+     * Disconnect manually from web socket server.
      */
     public disconnect() {
         this.manualClosed = true;
