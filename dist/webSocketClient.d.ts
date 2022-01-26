@@ -2,27 +2,29 @@
 import { EventEmitter } from 'events';
 import * as WebSocket from 'ws';
 /**
- * WebSocketClient allows to use WebSocket and keep connection alive untile manual close.
- * By reconnect automatly when connection close from any reasone.
+ * WebSocketClient allows to use WebSocket and keep connection alive until manual close.
+ * By persistent reconnect  when connection close from any reason.
  */
 export declare class WebSocketClient extends EventEmitter {
     private reconnectingIntervalMs;
     private showConsoleLogs;
     /** web socket instance */
     private webSocket;
-    /** is connection close manualy by code. */
+    /** is connection close manually by code. */
     private manualClosed;
     /** ws server url */
     private wsServerUrl;
+    /** ws options */
+    private options;
     /**
      * WebSocket instance.
-     * Allows to use it for any addionnal API hat not wrapped in 'WebSocketClient',
-     * Note that when trying to reconnect *all* listeners removed.
+     * Allows to use it for any additional API hat not wrapped in 'WebSocketClient',
+     * Note that when trying to reconnect *all* listeners wil be removed.
      */
-    readonly WebSocketInstance: WebSocket;
+    get WebSocketInstance(): WebSocket;
     /**
      * Init WebSocketClient with reconnection properties.
-     * @param reconnectingIntervalMs Timeout between connection fail to next  trying connection. in miliseconds.
+     * @param reconnectingIntervalMs Timeout between connection fail to next  trying connection. in milliseconds.
      * @param showConsoleLogs Mark if show message in console.
      */
     constructor(reconnectingIntervalMs?: number, showConsoleLogs?: boolean);
@@ -39,10 +41,11 @@ export declare class WebSocketClient extends EventEmitter {
     /**
      * Connect to seb socket server.
      * @param url ws server url (like: ws://127.0.0.1)
+     * @param options ws client options (like: {'headers' : {'test': 'heather'}})
      */
-    connect(url: string): void;
+    connect(url: string, options: any): void;
     /**
-     * Disconnect manualy from web socket server.
+     * Disconnect manually from web socket server.
      */
     disconnect(): void;
     /** Send data to web socket server.  */

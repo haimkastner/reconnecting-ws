@@ -13,7 +13,8 @@ export class WebSocketClient extends EventEmitter {
     private manualClosed = false;
     /** ws server url */
     private wsServerUrl = '';
-
+    /** ws options */
+    private options = {};
     /**
      * WebSocket instance.
      * Allows to use it for any additional API hat not wrapped in 'WebSocketClient',
@@ -89,22 +90,25 @@ export class WebSocketClient extends EventEmitter {
             }
             this.emit('reconnect');
             /** Connect again with the same url */
-            this.connect(this.wsServerUrl);
+            this.connect(this.wsServerUrl,this.options);
         }, this.reconnectingIntervalMs);
     }
 
     /**
      * Connect to seb socket server.
      * @param url ws server url (like: ws://127.0.0.1)
+     * @param options ws client options (like: {'headers' : {'X-auth': 'token'}})
      */
-    public connect(url: string) {
+    public connect(url: string, options: any) {
         /** Keep url case needs reconnect */
         this.wsServerUrl = url;
         /** Reset closing mark */
         this.manualClosed = false;
+        /** add any extra connection options */
+        this.options = options;
 
         /** Create a new WebSocket instance */
-        this.webSocket = new WebSocket(url);
+        this.webSocket = new WebSocket(url,options);
 
         /** Subscribe to emitters */
         this.webSocket.on('open', () => { this.onOpen(); });
